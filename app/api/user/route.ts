@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { executeQuery } from "../util/db";
+const bcrypt = require("bcrypt");
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,10 +29,25 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const { email, type } = await request.json();
+    const query3 = `SELECT * FROM users where email = '${email}'`;
+    const rows = await executeQuery(query3).catch((e) => {
+      return NextResponse.json({
+        type: "error",
+      });
+    });
+
+    if (rows.length !== 0) {
+      return NextResponse.json({
+        type: "error",
+        msg: "メールアドレスが既に登録されている",
+      });
+    }
     const randomString = generateRandomString();
+    const saltRounds = 10;
+    const salt = bcrypt.genSaltSync(saltRounds);
     await executeQuery(`
       INSERT INTO users (email,password ,role)
-      VALUES ('${email}','${randomString}','${type}')
+      VALUES ('${email}','${"12345"}','${type}')
       `);
     return NextResponse.json({
       type: "success",
@@ -42,7 +58,7 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ type: "error" });
   }
 }
-function generateRandomString() {
+export function generateRandomString() {
   const length = 10;
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

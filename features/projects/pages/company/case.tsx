@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Modal from "../../utils/modal";
+
 const CasePage: React.FC = () => {
   const [data, setData] = useState({
     caseType: "来 店",
@@ -32,11 +33,13 @@ const CasePage: React.FC = () => {
 
   const router = useRouter();
   const user = getUser();
+
   const [wantedSNS, setWantedSNS] = useState([]);
   const [error, setError] = useState("");
   const { id } = useParams();
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmMsg, setConfirmMsg] = useState("操作が成功しました。");
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`/api/case/aCase?id=${id}`);
@@ -94,6 +97,7 @@ const CasePage: React.FC = () => {
     }
     if (isValid) {
       if (saveMode) {
+        setIsLoading(true);
         if (data.id) {
           const result = await axios.put("/api/case", {
             ...body,
@@ -107,22 +111,48 @@ const CasePage: React.FC = () => {
             status: "申請前",
           });
           setError("");
+          setIsLoading(false);
           router.replace("/appliedList");
         }
       } else {
         if (data.id) {
+          setIsLoading(true);
           const result = await axios.put("/api/case", {
             ...body,
             status: "申請中",
           });
           setError("");
+          setIsLoading(false);
           router.back();
         } else {
+          setIsLoading(true);
           const result = await axios.post("/api/case", {
             ...body,
             status: "申請中",
           });
+          await axios.post("/api/sendEmail", {
+            to: user.user?.email,
+            subject: "【インフルエンサーめぐり】募集案件の登録申請をしました",
+            content: `${user.user?.name} 様
+          \nいつもインフルエンサーめぐりをご利用いただきありがとうございます。
+          \n
+          \n募集案件の登録申請を受け付けました。
+          \n申請確認を確認しますのでしばらくお待ちください。
+          \n-----------------------------------------------------
+          \n 不明点がございましたらお問い合わせフォームよりご連絡ください。
+          \n http://localhost:3000/ask。
+          `,
+          });
+          await axios.post("/api/sendEmail", {
+            from: user.user?.email,
+            subject: "【インフルエンサーめぐり】募集案件の登録申請がありました",
+            content: `募集案件の登録申請がありました。
+          \nログインして確認してください。
+          \n
+          `,
+          });
           setError("");
+          setIsLoading(false);
           router.replace("/appliedList");
         }
       }
@@ -412,8 +442,10 @@ const CasePage: React.FC = () => {
             <span className="flex ">
               <span>申請</span>
               <img
-                className="w-[14px] ml-[5px]"
-                src="/img/apply.svg"
+                className={
+                  isLoading ? "w-[14px] ml-[5px] rotate" : "w-[14px] ml-[5px]"
+                }
+                src={isLoading ? "/img/refresh.svg" : "/img/apply.svg"}
                 alt="refresh"
               />
             </span>

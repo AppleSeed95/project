@@ -23,6 +23,7 @@ export default function AppledCase() {
   const [options, setOptions] = useState([]);
   const [options1, setOptions1] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [reload, setReload] = useState(false);
 
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 10;
@@ -49,7 +50,32 @@ export default function AppledCase() {
       setIsLoading(false);
     };
     if (user) fetchData();
-  }, []);
+  }, [reload]);
+  const handleEndReport = async (id) => {
+    const result = await axios.put(`/api/apply`, {
+      status: "完了報告",
+      id,
+    });
+    if (result.data.type === "success") {
+      await axios.post("/api/sendEmail", {
+        to: result.data.emailAddress,
+        subject: "【インフルエンサーめぐり】案件の完了報告が届きました",
+        content: `${result.data.representativeName} 様
+          \n いつもインフルエンサーめぐりをご利用いただきありがとうございます。
+          \n以下の案件で完了報告が届いてます。
+          \nログインしてご確認をお願いします。
+          \n
+          \n案件名  ：${result.data.caseName}
+          \nインフルエンサー名：${result.data.influencerName}
+          \nURL   ：http://localhost:3000/caseDetail/${result.data.caseID}
+          \n-----------------------------------------------------
+          \n 不明点がございましたらお問い合わせフォームよりご連絡ください。
+          \n http://localhost:3000/ask。
+          `,
+      });
+      setReload(!reload);
+    }
+  };
   const makeOptioinedData = (visibleData, result, result1) => {
     let resultData = [];
     if (result.length === 0) {
@@ -277,12 +303,15 @@ export default function AppledCase() {
                         />
                       </td>
                       <td className="px-[15px] py-[25px]  border border-[#D3D3D3] text-center">
-                        {aData.status === "完了" ? (
+                        {aData.status === "完了報告" ? (
                           <div className="text-white bg-[#236997] p-[10px] m-[5px] rounded-lg shadow-sm">
                             完了した
                           </div>
                         ) : (
-                          <Button buttonType={ButtonType.PRIMARY}>
+                          <Button
+                            handleClick={() => handleEndReport(aData.id)}
+                            buttonType={ButtonType.PRIMARY}
+                          >
                             <span className="text-small">完了報告</span>
                           </Button>
                         )}
