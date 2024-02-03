@@ -12,7 +12,7 @@ export default function ApplyConfirmPage() {
           className="blcok m-auto w-[265px] sp:hidden mb-[50px]"
         />
         <div className="m-[50px] text-left">
-          〇〇サービスにご登録ありがとうございます。
+          サービスにご登録ありがとうございます。
           <br />
           ご入力いただいたメールアドレスにメールをお送りしましたので
           ご確認をお願いします。
