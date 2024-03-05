@@ -39,7 +39,7 @@ const TextArea: React.FC<TextAreaProps> = ({
     setIsValid(true);
   };
   useEffect(() => {
-    document.getElementById("mainArea").value = "";
+    document.getElementById("mainArea").innerHTML = "";
   }, [reset]);
   useEffect(() => {
     setTextValue(value);

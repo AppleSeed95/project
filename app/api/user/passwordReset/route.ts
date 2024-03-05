@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { executeQuery } from "../../util/db";
-import { generateRandomString } from "../route";
+import { generateRandomString } from "../util";
 const bcrypt = require("bcrypt");
 
 export async function POST(request: NextRequest) {

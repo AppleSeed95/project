@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { generateRandomString } from "./util";
 import { executeQuery } from "../util/db";
 const bcrypt = require("bcrypt");
 
@@ -57,17 +58,4 @@ export async function PUT(request: NextRequest) {
     console.error("Error creating user record:", e);
     return NextResponse.json({ type: "error" });
   }
-}
-export function generateRandomString() {
-  const length = 10;
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    result += characters.charAt(randomIndex);
-  }
-
-  return result;
 }
