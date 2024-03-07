@@ -8,7 +8,6 @@ sgMail.setApiKey(
 );
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-console.log(ADMIN_EMAIL);
 
 export async function POST(request: NextRequest) {
   try {

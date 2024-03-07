@@ -1,9 +1,10 @@
-import ResetPasswordPage from "@/features/projects/pages/ResetPasswordPage";
+import ResetPasswordPage from "@/features/projects/pages/resetPasswordPage";
 
-
-function ResetPassword(){
-    return(<div>
-        <ResetPasswordPage/>
-    </div>)
+function ResetPassword() {
+  return (
+    <div>
+      <ResetPasswordPage />
+    </div>
+  );
 }
-export default ResetPassword
+export default ResetPassword;
