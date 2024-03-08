@@ -12,7 +12,7 @@ const Company: React.FC = () => {
       if (result.data) setData(result.data);
     };
     fetchData();
-  }, []);
+  }, [id]);
   return (
     <div>
       <CompanyPage companyData={data} />

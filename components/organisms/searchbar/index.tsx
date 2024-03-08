@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { ReactNode } from "react";
 import Input from "@/components/atoms/input";
-import Button, { ButtonType } from "@/components/atoms/button";
+import Button from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
 
 export interface SearchBarProps {
   extendChild: ReactNode;
@@ -61,7 +62,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
           <span className="text-[#3F8DEB] hover:cursor-pointer sp:text-spsmall sp:hidden">
             オプション検索
           </span>
-          <img src="/img/triangle-down.svg" className="w-[10px] ml-[5px]" />
+          <img
+            src="/img/triangle-down.svg"
+            alt="img"
+            className="w-[10px] ml-[5px]"
+          />
         </div>
       </div>
       {extendChild && showOption && (

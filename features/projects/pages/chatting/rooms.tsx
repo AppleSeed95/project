@@ -22,7 +22,9 @@ const ChattingRooms: React.FC = () => {
       if (result.data.length) {
         setData(result.data);
         if (!id) {
-          router.push(`/chattingInf/${result.data[0].applyId}`);
+          if (typeof window !== "undefined") {
+            router.push(`/chattingInf/${result.data[0].applyId}`);
+          }
         }
         result.data.map((a, key) => {
           if (a.applyId == id) {

@@ -1,16 +1,17 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 
 export default function SideBar() {
-  const pathName = usePathname();
+  // const pathName = usePathname();
 
   return (
     <div className="bg-[#F8F9FA] min-h-[100vh] w-[264px] sp:w-[0px] duration-200">
       <div className="px-[20px] py-[120px]">
         <div
           className={
-            pathName.indexOf("companyList") !== -1
+            // pathName.indexOf("companyList") !== -1
+            false
               ? "p-[12px] text-[14px] text-[#3F8DEB]"
               : "p-[12px] text-[14px] "
           }
@@ -19,7 +20,8 @@ export default function SideBar() {
         </div>
         <div
           className={
-            pathName.indexOf("influencerList") !== -1
+            // pathName.indexOf("influencerList") !== -1
+            false
               ? "p-[12px] text-[14px] text-[#3F8DEB]"
               : "p-[12px] text-[14px] "
           }
@@ -28,7 +30,8 @@ export default function SideBar() {
         </div>
         <div
           className={
-            pathName.indexOf("applicationList") !== -1
+            // pathName.indexOf("applicationList") !== -1
+            false
               ? "p-[12px] text-[14px] text-[#3F8DEB]"
               : "p-[12px] text-[14px] "
           }
@@ -37,7 +40,8 @@ export default function SideBar() {
         </div>
         <div
           className={
-            pathName.indexOf("notification") !== -1
+            // pathName.indexOf("notification") !== -1
+            false
               ? "p-[12px] text-[14px] text-[#3F8DEB]"
               : "p-[12px] text-[14px] "
           }

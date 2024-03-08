@@ -1,7 +1,7 @@
 "use client";
 import Input from "@/components/atoms/input";
 import Button from "@/components/atoms/button";
-import { ButtonType } from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
 import RadioBtn from "@/components/atoms/radio";
 import { useState } from "react";
 import axios from "axios";
@@ -40,7 +40,9 @@ export default function ApplyPage() {
           \n http://localhost:3000/ask
           `,
       });
-      router.push("/applyConfirm");
+      if (typeof window !== "undefined") {
+        router.push("/applyConfirm");
+      }
     } else {
       if (result.data.msg) setError(result.data.msg);
     }

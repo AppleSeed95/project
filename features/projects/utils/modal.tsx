@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import Button, { ButtonType } from "@/components/atoms/button";
+import Button from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
 
 export interface InfluencerProps {
   onOk?: () => void;

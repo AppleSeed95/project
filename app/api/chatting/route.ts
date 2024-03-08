@@ -41,8 +41,8 @@ export async function POST(request: NextRequest) {
   }
 }
 export async function GET(request: NextRequest) {
+  const id = request.nextUrl.searchParams.get("id") || "";
   try {
-    const id = request.nextUrl.searchParams.get("id") || "";
     const query = `SELECT message.*,users.name FROM message
     LEFT JOIN users ON message.userId = users.id 
     where roomId = ${id}`;

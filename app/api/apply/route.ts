@@ -48,8 +48,8 @@ export async function POST(request: NextRequest) {
   }
 }
 export async function GET(request: NextRequest) {
+  const id = request.nextUrl.searchParams.get("id") || "";
   try {
-    const id = request.nextUrl.searchParams.get("id") || "";
     //   LEFT JOIN cases ON apply.companyId = company.id
     // `SELECT apply.*, cases.*
     // FROM apply

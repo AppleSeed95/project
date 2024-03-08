@@ -1,6 +1,7 @@
 "use client";
 import Button from "@/components/atoms/button";
-import { ButtonType } from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
+
 import Link from "next/link";
 
 export default function ApplyConfirmPage() {

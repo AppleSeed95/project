@@ -62,13 +62,17 @@ const Header: React.FC<Headerprops> = ({ mode }: Headerprops) => {
           src="/img/logout.svg"
           className="lg:hidden h-[14px] mx-[22px]"
           onClick={() => {
-            router.push("/logout");
+            if (typeof window !== "undefined") {
+              router.push("/logout");
+            }
           }}
         />
         <div
           className="text-[white] h-[full] flex items-center px-[32px] sp:hidden cursor-pointer"
           onClick={() => {
-            router.push("/logout");
+            if (typeof window !== "undefined") {
+              router.push("/logout");
+            }
           }}
         >
           ログアウト

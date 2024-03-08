@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { executeQuery } from "../../util/db";
 
 export async function GET(request: NextRequest) {
+  const id = request.nextUrl.searchParams.get("id") || "";
   try {
-    const id = request.nextUrl.searchParams.get("id") || "";
     const query = `SELECT cases.*, company.companyName, company.emailAddress, company.representativeName
       FROM cases
       LEFT JOIN company ON cases.companyId=company.id 
@@ -20,8 +20,8 @@ export async function GET(request: NextRequest) {
   }
 }
 export async function PUT(request: NextRequest) {
+  const id = request.nextUrl.searchParams.get("id") || "";
   try {
-    const id = request.nextUrl.searchParams.get("id") || "";
     const { update, reason, approveMode, resumeMode, companyId } =
       await request.json();
     console.log({ update, reason, approveMode, resumeMode, companyId });

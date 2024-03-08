@@ -1,7 +1,7 @@
 "use client";
 import Input from "@/components/atoms/input";
 import Button from "@/components/atoms/button";
-import { ButtonType } from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -29,7 +29,9 @@ export default function ResetPasswordPage() {
           \n http://localhost:3000/ask。
           `,
       });
-      router.push("/login");
+      if (typeof window !== "undefined") {
+        router.push("/login");
+      }
     } else if (result.data.type === "error") {
       setError(result.data.msg);
     }

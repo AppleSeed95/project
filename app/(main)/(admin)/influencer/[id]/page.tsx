@@ -12,7 +12,7 @@ const Influencer: React.FC = () => {
       if (result?.data) setData(result.data);
     };
     fetchData();
-  }, []);
+  }, [id]);
   return (
     <div>
       <InfluencerPage influencerData={data} />

@@ -2,7 +2,7 @@
 import Input from "@/components/atoms/input";
 import Checkbox from "@/components/atoms/checkbox";
 import Button from "@/components/atoms/button";
-import { ButtonType } from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
 import TextArea from "@/components/atoms/textarea";
 import { useState } from "react";
 import axios from "axios";

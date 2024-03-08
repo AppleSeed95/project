@@ -6,7 +6,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getUser } from "../../utils/getUser";
 import axios from "axios";
-import Button, { ButtonType } from "@/components/atoms/button";
+import Button from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
 

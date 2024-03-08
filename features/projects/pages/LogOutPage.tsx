@@ -1,10 +1,10 @@
 "use client";
 import Button from "@/components/atoms/button";
-import { ButtonType } from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
 import Link from "next/link";
 import { useEffect } from "react";
 
-export default function LoginPage() {
+export default function LogOutPage() {
   useEffect(() => {
     localStorage.removeItem("user");
   }, []);

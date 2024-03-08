@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 
 export default function CompanySidebar() {
-  const pathName = usePathname();
+  // const pathName = usePathname();
+  const pathName = "";
 
   return (
     <div className="bg-[#F8F9FA] min-h-[100vh] w-[264px] sp:w-[0px] duration:200 ">

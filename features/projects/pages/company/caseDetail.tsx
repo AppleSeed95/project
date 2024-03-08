@@ -2,8 +2,8 @@
 
 import Checkbox from "@/components/atoms/checkbox";
 import SearchBar from "@/components/organisms/searchbar";
-import Button, { ButtonType } from "@/components/atoms/button";
-import Link from "next/link";
+import Button from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
 import ApplicationPage from "../admin/applicationPage";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -228,7 +228,9 @@ export default function CaseDetailPage({ caseProps }: caseData) {
   const handleToChat = (id) => {
     const createChatRoom = async () => {
       await axios.post(`/api/chatting/room?id=${id}`);
-      router.push(`/chatting/${id}`);
+      if (typeof window !== "undefined") {
+        router.push(`/chatting/${id}`);
+      }
     };
     createChatRoom();
   };

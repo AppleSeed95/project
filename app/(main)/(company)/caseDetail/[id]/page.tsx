@@ -13,7 +13,7 @@ const CaseDetail: React.FC = () => {
       if (result.data) setData(result.data);
     };
     fetchData();
-  }, []);
+  }, [id]);
   return (
     <div className="h-full">
       <CaseDetailPage caseProps={data} />

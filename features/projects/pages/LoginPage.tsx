@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/atoms/button";
 import Input from "@/components/atoms/input";
-import { ButtonType } from "@/components/atoms/button";
+import { ButtonType } from "@/components/atoms/buttonType";
 import Link from "next/link";
 import { useRecoilState } from "recoil";
 import { authUserState } from "@/recoil/atom/auth/authUserAtom";
@@ -46,18 +46,20 @@ export default function LoginPage() {
     } else {
       setIsLoading(false);
       setAuthUser({ user: response.data });
-      switch (response.data?.role) {
-        case "admin":
-          router.push("/companyList");
-          break;
-        case "企業":
-          router.push("/appliedList");
-          break;
-        case "インフルエンサー":
-          router.push("/collectingCase");
+      if (typeof window !== "undefined") {
+        switch (response.data?.role) {
+          case "admin":
+            router.push("/companyList");
+            break;
+          case "企業":
+            router.push("/appliedList");
+            break;
+          case "インフルエンサー":
+            router.push("/collectingCase");
 
-        default:
-          break;
+          default:
+            break;
+        }
       }
     }
   };
