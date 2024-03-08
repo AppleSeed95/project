@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { authUserState } from "@/recoil/atom/auth/authUserAtom";
@@ -10,8 +9,12 @@ export interface Headerprops {
 }
 
 const Header: React.FC<Headerprops> = ({ mode }: Headerprops) => {
-  const [_, setAuthUser] = useRecoilState(authUserState);
   const [showMenu, setShowMenu] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const authUser = useRecoilValue(authUserState);
   const router = useRouter();
   return mode === "auth" ? (
@@ -49,6 +52,7 @@ const Header: React.FC<Headerprops> = ({ mode }: Headerprops) => {
       </div>
       <div className="flex justify-between items-center w-full bg-[#494D53] sp:py-[14px]">
         <img
+          alt="img"
           src="/img/hamburger.svg"
           className="lg:hidden h-[14px] mx-[22px]"
           onClick={() => {
@@ -56,9 +60,10 @@ const Header: React.FC<Headerprops> = ({ mode }: Headerprops) => {
           }}
         />
         <div className=" text-[white] h-[full] flex items-center px-[32px] text-header">
-          {authUser.user?.name}
+          {isClient && authUser.user?.name}
         </div>
         <img
+          alt="img"
           src="/img/logout.svg"
           className="lg:hidden h-[14px] mx-[22px]"
           onClick={() => {
