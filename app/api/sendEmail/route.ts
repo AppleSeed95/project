@@ -20,7 +20,8 @@ export async function POST(request: NextRequest) {
       text: content,
     };
 
-    const res = await sgMail.send(msg);
+    // const res = await sgMail.send(msg);
+    const res = { type: "succes" };
     if (!res) {
       return NextResponse.json({ type: "error" });
     }
