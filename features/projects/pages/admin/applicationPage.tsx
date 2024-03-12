@@ -267,7 +267,10 @@ const ApplicationPage: React.FC<ApplicatinProps> = ({
         </span>
         <span>
           {data?.collectionEnd
-            ? `${data?.collectionStart}~${data?.collectionEnd}`
+            ? `${data?.collectionStart.replace(
+                "T",
+                " / "
+              )}~${data?.collectionEnd.replace("T", " / ")}`
             : ""}
         </span>
       </div>
@@ -280,7 +283,7 @@ const ApplicationPage: React.FC<ApplicatinProps> = ({
         <span className="w-[35%] sp:w-[100px] flex justify-end sp:justify-start  mr-[67px]">
           <span className="text-[#6F6F6F]">案件終了日時 </span>
         </span>
-        <span>{data?.caseEnd}</span>
+        <span>{data?.caseEnd.replace("T", " / ")}</span>
       </div>
       <div
         className={

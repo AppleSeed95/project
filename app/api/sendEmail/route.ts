@@ -3,9 +3,7 @@ import sgMail from "@sendgrid/mail";
 import { API_KEY } from "./config";
 
 // sgMail.setApiKey(process.env.API_KEY as string);
-sgMail.setApiKey(
-  "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"
-);
+sgMail.setApiKey(API_KEY);
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
@@ -20,8 +18,8 @@ export async function POST(request: NextRequest) {
       text: content,
     };
 
-    // const res = await sgMail.send(msg);
-    const res = { type: "succes" };
+    const res = await sgMail.send(msg);
+    // const res = { type: "succes" };
     if (!res) {
       return NextResponse.json({ type: "error" });
     }

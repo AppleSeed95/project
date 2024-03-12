@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { executeQuery } from "../util/db";
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    let body = await request.json();
+    const chunks = body?.msg.match(new RegExp(`.{1,${50}}`, "g"));
+    const result = chunks.join("\n");
+    body.msg = result;
     let query1 = "";
     let query2 = "";
     const keys = Object.keys(body);
