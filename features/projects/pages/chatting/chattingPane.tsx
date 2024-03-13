@@ -8,7 +8,7 @@ import { useRecoilValue } from "recoil";
 import { authUserState } from "@/recoil/atom/auth/authUserAtom";
 import { useParams } from "next/navigation";
 import axios from "@/node_modules/axios/index";
-const socket = io("http://localhost:5000");
+const socket = io("http://localhost:5000/user-chat");
 import Image from "next/image";
 import ChattingRooms from "./rooms";
 // import controller from "./socketController";
