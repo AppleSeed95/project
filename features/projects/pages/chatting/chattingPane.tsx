@@ -8,7 +8,7 @@ import { useRecoilValue } from "recoil";
 import { authUserState } from "@/recoil/atom/auth/authUserAtom";
 import { useParams } from "next/navigation";
 import axios from "@/node_modules/axios/index";
-const socket = io("http://localhost:5000/user-chat");
+const socket = io("http://162.43.4.62");
 import Image from "next/image";
 import ChattingRooms from "./rooms";
 // import controller from "./socketController";
@@ -26,6 +26,7 @@ export default function ChattingPane() {
     socket.on("message", () => {
       setReload(!reload);
     });
+
     socket.emit("info", { roomId: id });
     const fetchData = async () => {
       const result = await axios.get(`/api/chatting?id=${id}`);
@@ -89,6 +90,8 @@ export default function ChattingPane() {
           `,
       });
     }
+    console.log(socket);
+
     socket.emit("message", { roomId: id, userId: user.user.id, msg });
     setReset(!reset);
   };
