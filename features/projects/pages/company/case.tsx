@@ -153,11 +153,11 @@ const CasePage: React.FC = () => {
           `,
           });
           setError("");
-          setIsLoading(false);
           router.replace("/appliedList");
         }
       }
     }
+    setIsLoading(false);
   };
   const determineEditable = () => {
     let startable;
@@ -443,10 +443,8 @@ const CasePage: React.FC = () => {
             <span className="flex ">
               <span>申請</span>
               <img
-                className={
-                  isLoading ? "w-[14px] ml-[5px] rotate" : "w-[14px] ml-[5px]"
-                }
-                src={isLoading ? "/img/refresh.svg" : "/img/apply.svg"}
+                className="w-[14px] ml-[5px]"
+                src="/img/apply.svg"
                 alt="refresh"
               />
             </span>

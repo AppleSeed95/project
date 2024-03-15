@@ -113,7 +113,7 @@ export default function ChattingPane() {
         className={
           showRooms
             ? "lg:hidden opacity-100 "
-            : "lg:hidden opacity-0 duration-200"
+            : "lg:hidden hidden  duration-200"
         }
       >
         <ChattingRooms />

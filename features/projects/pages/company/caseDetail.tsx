@@ -294,7 +294,9 @@ export default function CaseDetailPage({ caseProps }: caseData) {
               >
                 案件詳細
               </span>
-              <span className="w-[100px]">{`状態: ${collectionStatusTemp}`}</span>
+              <span className="w-[100px]">{`状態: ${
+                collectionStatusTemp ? collectionStatusTemp : ""
+              }`}</span>
               <span className="flex flex-wrap">
                 <span>{`募集期間：${
                   caseData?.collectionStart

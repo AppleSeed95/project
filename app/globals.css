@@ -23,6 +23,7 @@
 } */
 ::-webkit-scrollbar {
   width: 5px; /* Adjust the width of the scrollbar */
+  height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {

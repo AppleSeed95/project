@@ -328,7 +328,7 @@ export default function AppliedList() {
             renderOnZeroPageCount={null}
           />
         </div>
-        <div className="lg:hidden">
+        <div className="lg:hidden h-full">
           {currentItems?.map((aData, idx) => (
             <div
               key={idx}
