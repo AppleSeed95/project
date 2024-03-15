@@ -63,6 +63,11 @@ export default function LoginPage() {
       }
     }
   };
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  };
   return (
     <div className="bg-[#F5F5F5]  py-[300px] sp:py-[200px]">
       <div className="bg-[white] px-[20px] w-[614px] sp:w-[90%] rounded-[40px] block m-auto py-[70px] sp:py-[20px] shadow-lg">
@@ -75,6 +80,7 @@ export default function LoginPage() {
           <Input
             handleChange={(val) => setId(val)}
             inputClassName={"max-w-[250px] grow"}
+            handleKeyPress={handleKeyPress}
           />
         </div>
         <div className="flex justify-center w-full  mb-[20px] pr-[70px] sp:pr-[30px] sp:mb-[30px]">
@@ -84,6 +90,7 @@ export default function LoginPage() {
           <Input
             password
             handleChange={(val) => setPassword(val)}
+            handleKeyPress={handleKeyPress}
             inputClassName={"max-w-[250px] grow"}
           />
         </div>
