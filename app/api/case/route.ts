@@ -102,7 +102,13 @@ export async function PUT(request: NextRequest) {
     const keys = Object.keys(body);
 
     keys?.map((aKey) => {
-      if (aKey !== "id" && aKey !== "companyId" && aKey !== "companyName") {
+      if (
+        aKey !== "id" &&
+        aKey !== "companyId" &&
+        aKey !== "companyName" &&
+        aKey !== "emailAddress" &&
+        aKey !== "representativeName"
+      ) {
         query +=
           aKey === "edited"
             ? `${aKey} = ${body[aKey]}, `

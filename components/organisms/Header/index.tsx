@@ -20,7 +20,7 @@ const Header: React.FC<Headerprops> = ({ mode }: Headerprops) => {
   return mode === "auth" ? (
     <div
       key={"auth"}
-      className="h-[90px] bg-[white] flex justify-between items-center px-[25px] absolute top-0 w-full"
+      className="h-[90px] bg-[white] flex justify-between items-center px-[25px] absolute top-0 w-full shadow-lg"
     >
       <img src="/img/logo(red).svg" className="h-[51px] sp:w-[30%]" />
       <div className="flex">
@@ -45,7 +45,10 @@ const Header: React.FC<Headerprops> = ({ mode }: Headerprops) => {
       </div>
     </div>
   ) : (
-    <div key={"main"} className="flex h-[64px] w-full absolute sp:flex-col">
+    <div
+      key={"main"}
+      className="flex h-[64px] w-full absolute sp:flex-col shadow-lg"
+    >
       <div className="bg-[#FF2929] h-[full] px-[15px] flex items-center sp:w-[100%] sp:py-[7px]">
         <img src="/img/logo.svg" className="sp:hidden" />
         <img src="/img/vector.svg" className="lg:hidden mx-auto" />
